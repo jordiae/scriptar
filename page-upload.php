@@ -74,7 +74,7 @@ $filernou2 = $filernou;
 $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
 var_dump($results);
 echo $command;
-var_dump($tttt);
+echo($tttt);
  ?>
 
 
