@@ -67,7 +67,7 @@ if ($uploadOk == 0) {
 }
 
 $tttt = $('ffprobe -v error -show_entries format=duration \
-  -of default=noprint_wrappers=1:nokey=1 ' $filer);
+  -of default=noprint_wrappers=1:nokey=1 ' . $filer);
 echo $tttt;
 exec('ffmpeg -i '. $ruta . $filer .' -acodec flac -ar 16000  -ac 1 ' . $ruta .$filernou);
 $filernou2 = $filernou;
