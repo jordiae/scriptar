@@ -73,6 +73,7 @@ exec('ffmpeg -i '. $ruta . $filer .' -acodec flac -ar 16000  -ac 1 ' . $ruta .$f
 $filernou2 = $filernou;
 $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
 var_dump($results);
+echo $command;
 var_dump($tttt);
  ?>
 
