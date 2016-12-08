@@ -77,7 +77,7 @@ else {
     $filernou2 = $filernou;
     $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
     var_dump($results);
-//}
+}
  ?>
 
 </div>
