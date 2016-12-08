@@ -73,8 +73,8 @@ if ($uploadOk == 0) {
 $array_output = array();
 exec('ffprobe -v error -show_entries format=duration \-of default=noprint_wrappers=1:nokey=1 ' . $ruta . $filer,$array_output);
 exec('echo'); // NECESSARY (LOL)
-echo $array_output;
-if (intval($array_output)>50) {
+echo $array_output[0];
+if (intval($array_output[0])>50) {
     echo 'Should you wish to upload an audio file longer than 2 minutes, please contact sales :)\n';
 }
 else {
