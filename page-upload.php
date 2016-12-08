@@ -68,11 +68,11 @@ if ($uploadOk == 0) {
 
 $array_output = array();
 exec('ffprobe -v error -show_entries format=duration \-of default=noprint_wrappers=1:nokey=1 ' . $ruta . $filer,$array_output);
-exec('echo test');
-/*if (floatval($array_output[0])>120) {
+exec('echo'); // NECESSARY (LOL)
+if (floatval($array_output[0])>120) {
     echo 'Should you wish to upload an audio file longer than 2 minutes, please contact sales :)\n';
 }
-else {*/
+else {
     exec('ffmpeg -i '. $ruta . $filer .' -acodec flac -ar 16000  -ac 1 ' . $ruta .$filernou);
     $filernou2 = $filernou;
     $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
