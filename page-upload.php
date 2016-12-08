@@ -1,6 +1,10 @@
 <?php get_header(); ?>
 <?php
 
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
+
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $filer = basename($_FILES["fileToUpload"]["name"]);
 $filer2 = substr($filer, 0, -4);
