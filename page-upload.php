@@ -37,7 +37,7 @@ $options = [
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-    $check = @getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 }
 
 // Check if file already exists
@@ -47,7 +47,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 5000000) {
+if ($_FILES["fileToUpload"]["size"] > 20000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
