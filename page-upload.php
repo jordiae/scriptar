@@ -69,7 +69,8 @@ if ($uploadOk == 0) {
 $command="ffprobe -v error -show_entries format=duration \
   -of default=noprint_wrappers=1:nokey=1 " . $filer;
 $array_output = array();
-exec('uname -a',$array_output);
+exec('ffprobe -v error -show_entries format=duration \
+  -of default=noprint_wrappers=1:nokey=1 ' . $filer,$array_output);
 exec('ffmpeg -i '. $ruta . $filer .' -acodec flac -ar 16000  -ac 1 ' . $ruta .$filernou);
 $filernou2 = $filernou;
 $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
