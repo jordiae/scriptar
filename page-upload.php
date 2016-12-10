@@ -79,15 +79,19 @@ if (intval($array_output[0])>120) {
 }
 else {
     //ffmpeg -i somefile.mp3 -f segment -segment_time 3 -c copy out%03d.mp3
-    exec('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 50 -c copy ' . $filer . '%03d.mp3');
-    exec('rm' . $ruta . $filer);
+    //echo('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 7 -c copy ' . $filer . '%03d.mp3');
+    exec('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 7 -c copy ' . $ruta . $filer . '%03d.mp3');
+
+    //exec('rm' . $ruta . $filer);
 
     $files = array();
     foreach (glob($ruta . $filer . '*') as $filename) {
         exec('ffmpeg -i '. $filename .' -acodec flac -ar 16000  -ac 1 ' . $filename . '.flac');
         $results = $speech->recognize(fopen($filename . '.flac', 'r'), $options);
         var_dump($results);
+       // exec('rm' . $filename . ' ' . $filename . '.flac');
     }
+    //exec('rm' . $ruta . $filer . '*');
 }
  ?>
 
