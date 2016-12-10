@@ -74,14 +74,20 @@ $array_output = array();
 exec('ffprobe -v error -show_entries format=duration \-of default=noprint_wrappers=1:nokey=1 ' . $ruta . $filer,$array_output);
 exec('echo'); // NECESSARY (LOL)
 echo $array_output[0];
-if (intval($array_output[0])>50) {
+if (intval($array_output[0])>120) {
     echo 'Should you wish to upload an audio file longer than 2 minutes, please contact sales :)\n';
 }
 else {
-    exec('ffmpeg -i '. $ruta . $filer .' -acodec flac -ar 16000  -ac 1 ' . $ruta .$filernou);
-    $filernou2 = $filernou;
-    $results = $speech->recognize(fopen($ruta . $filernou2, 'r'), $options);
-    var_dump($results);
+    //ffmpeg -i somefile.mp3 -f segment -segment_time 3 -c copy out%03d.mp3
+    exec('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 3 -c copy ' . $filer . '%03d.mp3');
+    exec('rm' . $ruta . $filer);
+
+    $files = array();
+    foreach (glob($ruta . $filer . '*') as $filename) {
+        exec('ffmpeg -i '. $filename .' -acodec flac -ar 16000  -ac 1 ' . $filename . '.flac');
+        $results = $speech->recognize(fopen($filename . '.flac', 'r'), $options);
+        var_dump($results);
+    }
 }
  ?>
 
