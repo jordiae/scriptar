@@ -79,7 +79,7 @@ if (intval($array_output[0])>120) {
 }
 else {
     //ffmpeg -i somefile.mp3 -f segment -segment_time 3 -c copy out%03d.mp3
-    exec('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 3 -c copy ' . $filer . '%03d.mp3');
+    exec('ffmpeg -i '. $ruta . $filer .' -f segment -segment_time 50 -c copy ' . $filer . '%03d.mp3');
     exec('rm' . $ruta . $filer);
 
     $files = array();
